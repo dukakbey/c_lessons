@@ -15,7 +15,33 @@
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ■ 1.Ders C
-	izledim not tutmamıştım, tekrar izleme hakkım yok
+	▪ C dili:
+		- portable assembly
+		- poor-man language
+		- soyutlama düşük
+		- derleyici çalışma zamanı davranışını etkilemeyecek şekilde kodu daha verimli hale getirir.
+		- c/c++ derleyicilerinin hızlı çalışmasının nedenleri arka planda optimizasyon işlemleri.
+		- static tür kavramı => C/C++ : değişkenlerin türleri var. 
+		- dinamik tür =>python
+		- mülkiyeti yok
+		- 1989 yılı itibari ile standart bir dildir.Farklı derleyicilerde aynı tepkileri verecektir. Standart olmasa platforma göre davranış değişebilir. Mesela assembly'ler farklı farklı cihazlarda farklı şekilde yazılır. Komut setleri farklı.
+		- standartlar:
+			- c90
+			- c95
+			- c99 : heryerde implemente edilmiştir.
+			- c11
+			- c17
+		    - c23
+		  
+	//kodun ne yaptığı açık değil
+	ex:
+		while(*p1++ = *p2++); //burda string kopyalama işlemi var.
+		
+		while(n--); //burda string kopyalama işlemi var.
+			*p1++ = *p2++;
+		
+		while((ch = getchar()) != '\n'); 
+			putchar(ch);
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ■ 2.Ders C
