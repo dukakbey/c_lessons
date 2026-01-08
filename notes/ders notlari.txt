@@ -1,4 +1,9 @@
 	
+	Dersler:
+	1) C genel tanıtım
+	2) C genel tanıtım tarihçesi, Derleme süreci, Preprocessor, Statik kod analizi araçları
+	3) Derleme süreci devam
+	
 	■ undefined behavior: 
 		behavior upon use of a nonportable or erroneous program construct or of erroneous data, 
 		for which this International Standard imposes no requirements
@@ -12,7 +17,7 @@
 
 	▪ gcc derleyicisini browserdan kullanmak için  www.wandbox.org	
 
-kalınan yer ders2 7:25
+kalınan yer : 3.ders 34:00
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ■ 1.Ders C
@@ -29,10 +34,10 @@ kalınan yer ders2 7:25
 		- standartlar:
 			- c90
 			- c95
-			- c99 : heryerde implemente edilmiştir.
-			- c11
-			- c17
-		    - c23
+			- c99 : major sürüm. Heryerde implemente edilmiştir. Min base olmalı.
+			- c11 : major sürüm. günümüzde minimum base c11'e taşınıyor.
+			- c17 : major değil her derleyici desteklemiyor.
+		    - c23 : major değil her derleyici desteklemiyor.
 		  
 	//kodun ne yaptığı açık değil
 	ex:
@@ -48,11 +53,94 @@ kalınan yer ders2 7:25
 ■ 2.Ders C
 	▪ C dili:
 		- 1970-1972 yılları arası doğum tarihi
-		- 
+		- 1978'de "the C programing language" kitabı yayınlandı.Reklamının yapıldığı ilk önemli gelişme.
+		- auto keyword C'de c++'dan farklı anlamda.
+	
+	▪ Dosya dediğimiz şey aslında 1'ler 0'lar yani byte'lar kümesidir. Dosya'da tuttuğumuz 1'ler 0'lar ne anlama geliyor kısmı ise dosya formatına bağlıdır.Uzantıya göre belirlenir.
+	
+	▪ Compiler ==> assembly ==> assembler ==> object code ("nesne dosyası" terimi doğru değil "hedef kod" kullanılmalı)=> linker => debugger
+	
+	▪ Object kod çalıştırılabilir dosya değildir. Bize çalıştırılabilir dosya elde eden kısım linker'dır.
+	
+	▪ Obje kodunun uzantısı konusunda genel bir kural yok. üretilen ".o" uzantılı dosyalardır fakat uzantı derleyiciden derleyiciye değişir. 
+		- linux ortamlarında çoğunlukla ".o" uzantılı.
+		- windows ortamında ".obj" uzantılı.
+	
+	▪ linker neden var  ? :
+		- Özet olarak obje kodları alarak aralarında mantıksal bağlantıları kurarak bize çalıştırılabilir dosya oluşturan programdır.
+		- C/C++ seprate compile module denilen ayrı ayrı derleme sürecine tabii tutuluyor. 
+		- Compiler dediğimiz program bizim projemizdeki kaynak dosyalar arasındaki mantıksal bağlantıdan haberdar değil.
+		- Derleyicinin işlem birimi dosya. Yani 4 kaynak dosyayı ayrı ayrı session'larla derleyiciyi 4 kez çalıştırarak derliyoruz. 
+		- Biz tek bir dosya olarak yazsak bile standart kütüphanenin dosyaları ayrı ayrı olduğundan onların ayrı ayrı derlenmesi gerekiyor.
+	
+	▪ Preprocessor:
+		- Derleyici programın giriş modülü gibi çalışır.
+		- "Kaynak dosyayı derleyici input olarak alır" teknik olarak tam doğru bir terim değildir. Bizim oluşturduğumuz dosyalar preprocessor modülüne input olarak giriyor.
+		- Ön işlemci kendi komutlarını yürüten ayrı bir programdır. 
+		- Ön işlemci girdisi "source file" çıktısı yani derleyici girdisi ise "translation unit"
+			- "source file" önişlemci komutlarının yürütülmemiş hali
+			- "translation unit" önişlemci komutlarının yürütülmesi sonucu oluşan çıktıdır. ".i" uzantılı olarak sunulabilir.
+			- C++'da kullanımı daha az.
+	
+	▪ Derleme Alt Süreçler (modüller) sırasıyla :
+		sentaks kontrolü:
+		1) Lexing (tokenizing/atomlarına ayırma) : derleyici dosyayı anlamlı en küçük birimlere ayırıyor.
+			- Lexing aşamasında yapılan iş sadece atomlara ayırmak değil ayrıca onları kategorize etmek.
+			- Token şunlardan biri olmak zorunda :
+				- keywords
+					- özel anlam yüklenmiş başka isim verilmesi yasaklanmış isimler:int,double,long,short,char,float,signed,unsigned,for,while,if,else,switch,goto,struct,union,enum,register,auto,static,const,extern,sizeof,volatile,case,default,_Bool,_Static_assert 
+				
+				- identifiers (isimler): değişkenler, fonksiyonlar,types,label,constant.
+					- sadece variable olması gerekmiyor.
+					- isimlendirmede olabilecek karakterler:
+						- A...Z 26
+						- a...z 26
+						- 0...9 10 rakam ile başlayamaz.
+						- anahtar sözcükler identifier olarak kullanılamaz.
+						
+				- constants
+					- int x = 5; //5 sabit 
+				
+				- operators
+					 
+				- string literals: "sezgin"
+					- constant ama ayrı bir şekilde ele alınıyor.
+				- delimiter => ';' standart operator olarak görüyor.
+			- Token'lar arası boşluk anlamı değiştirmez.
+		2) Parsing : token'ların birleştirilerek gramer yapısının oluşturulması. 		
+		3) AST (Abstract Syntax Tree): parser'ın verdiği anlamsal çıktıyı bir ağaç formunda ifade ediyor. Sembol tablosu tutuluyor.
+		semantik kontrolü (AST sonrası yapılır):
+		4) IR (intermediate represantation): Bundan sonraki işlemlerin örneğin optimizasyon modülünün çalışabilesi için kendine has ara kod formunda temsil ediyor.
+		optimizer:
+		5) Compile Optimizer: optimizasyon işlemlerini yapan modul.
+		6) Code Generator: Son aşamadır. Tüm süreçler'den geçmiş ve assambly kodun üretilme aşamasına gelinmiştir.
+		
+		▪ oluşan syntax hataları derleyicinin Lexing veya Parsing aşamasında olur. Programcıların çoğunluğu tüm hatalara syntax hatası deme eğiliminde dilin kurallarına uymayan tüm hatalar syntax hatası değildir.
+		▪ semantik kontrol örnek: "5 = x" lexing veya parsing değil de semantik kontroller sırasında çıkan bir hatadır. Parsing sonrası çıkan hatalara standart "constraint violation" diyor.
+	▪ Static kod analizi araçları:
+		- derleme zamanında kodlama hatalarını bulmaya çalışır.
+		- bazıları kod kalitesine yönelik destek de verir.
+	▪ Runtime analiz araçları 2 ayrı kategoride incelenir:		
+		- sanitizer: 
+			- Birçoğu unix/linux sistemlerde hazır olarak geliyor ya da ide'lere entegre edilmiş oluyor.
+			- Bellek sızıntılarını yakalamaya yönelik programlardır.
+			- Programa yapılan entegrasyon ile tanımsız davranışı runtime'de yakalamaya çalışan programlar.
+			- Thread'lerin kullanımı ile ilgili deadlock var mı yok mu onu kontrol eden programlar.
+			- çeşitler:
+				- Asan: adress senatizer.
+				- Usan: undefined behavior senatizer.
+				
+		- ikisi de tamamen programın çalışma zamanına yönelik analiz yapar. 
+		- profiler: 
+			- amacı senatizer'dan çok farklı, performans analizi yapıyor.
+			- Hangi fonksiyon ne kadar çağırılmış ? Program hangi fonksiyonda ne kadar zaman kaybetmiş ? sorularına cevap veriyor.
+			- Biz bir c++ programı yazdık program sorunsuz çalışıyor fakat bir hız problemi var ve buna önlem almamız gerekiyor. Mesela bir algoritma kodu milyonlarca kez çağrılıyordur orda bir optimizasyon yapsam problemim çözülecek.Profiler burda devreye girer.
+	▪ compiler extension: 
+		- int x = 0b110'1100'1000'0011;//standart değil, her derleyici kabul etmeyebilir. compiler'a özgü bir özellik.
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ■ 3.Ders C [Sayı Sistemleri ve Genel Kavramlar]
-
+	
 	▪ Sayı (Number System) sistemleri, 2 ye tümleyen aritmetiği
 		▪ decimal - hex - octal - binary
 	
@@ -139,7 +227,7 @@ kalınan yer ders2 7:25
 			▪ ...
 			
 	▪ Statement
-		▪ declaration statement
+		▪ declaration statement     --> int x = 5;
 		▪ expression statement 		--> x=5; ++x; func();   x+5;//geçerli bir statement ama mantıken uygun değil, topla bunları demişiz sonucunu kullanmıyoruz
 		▪ compound statement		--> Blok içine yazılmış statementler
 										{
@@ -160,7 +248,7 @@ kalınan yer ders2 7:25
 											└ 2 biçimi var:
 											▪ Yalın(ifadesiz) return deyimi. i.e  return; 	Fonksiyonun çalışması sona eriyor.
 											▪ ifadeli return deyimi. i.e return expr;		Fonksiyonun çalışması sona eriyor. Fonksiyonun geri dönüş değerinin üretilmesini sağlar.
-
+		▪ execution statement
 	▪ address,pointer,expression(ifade), value category, constant expression, , function, declaration, statement(deyim), definition, scope, lifespan
 	
 	▪ Hello World
@@ -185,6 +273,10 @@ kalınan yer ders2 7:25
 		}
 		
 	▪ Block kavramı { } - İç içe (nested) block mümkün.	
+	▪ sıralama:
+		1) isim arama
+		2) bağlam kontrolü
+	 
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ■ 4.Ders C [Basic Types]
