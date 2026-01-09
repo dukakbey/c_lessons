@@ -30,7 +30,7 @@ kalınan yer : 3.ders 34:00
 		- static tür kavramı => C/C++ : değişkenlerin türleri var. 
 		- dinamik tür =>python
 		- mülkiyeti yok
-		- 1989 yılı itibari ile standart bir dildir.Farklı derleyicilerde aynı tepkileri verecektir. Standart olmasa platforma göre davranış değişebilir. Mesela assembly'ler farklı farklı cihazlarda farklı şekilde yazılır. Komut setleri farklı.
+		- 1989 yılı itibari ile standart bir dildir. Farklı derleyicilerde aynı tepkileri verecektir. Standart olmasa platforma göre davranış değişebilir. Mesela assembly'ler farklı cihazlarda farklı şekilde yazılır. Komut setleri farklı.
 		- standartlar:
 			- c90
 			- c95
@@ -56,7 +56,7 @@ kalınan yer : 3.ders 34:00
 		- 1978'de "the C programing language" kitabı yayınlandı.Reklamının yapıldığı ilk önemli gelişme.
 		- auto keyword C'de c++'dan farklı anlamda.
 	
-	▪ Dosya dediğimiz şey aslında 1'ler 0'lar yani byte'lar kümesidir. Dosya'da tuttuğumuz 1'ler 0'lar ne anlama geliyor kısmı ise dosya formatına bağlıdır.Uzantıya göre belirlenir.
+	▪ Dosya dediğimiz şey aslında 1'ler 0'lar yani byte'lar kümesidir. Dosya'da tuttuğumuz 1'ler 0'lar ne anlama geliyor kısmı ise dosya formatına bağlıdır. Uzantıya göre belirlenir.
 	
 	▪ Compiler ==> assembly ==> assembler ==> object code ("nesne dosyası" terimi doğru değil "hedef kod" kullanılmalı)=> linker => debugger
 	
@@ -66,7 +66,7 @@ kalınan yer : 3.ders 34:00
 		- linux ortamlarında çoğunlukla ".o" uzantılı.
 		- windows ortamında ".obj" uzantılı.
 	
-	▪ linker neden var  ? :
+	▪ Linker neden var  ? :
 		- Özet olarak obje kodları alarak aralarında mantıksal bağlantıları kurarak bize çalıştırılabilir dosya oluşturan programdır.
 		- C/C++ seprate compile module denilen ayrı ayrı derleme sürecine tabii tutuluyor. 
 		- Compiler dediğimiz program bizim projemizdeki kaynak dosyalar arasındaki mantıksal bağlantıdan haberdar değil.
@@ -90,7 +90,7 @@ kalınan yer : 3.ders 34:00
 				- keywords
 					- özel anlam yüklenmiş başka isim verilmesi yasaklanmış isimler:int,double,long,short,char,float,signed,unsigned,for,while,if,else,switch,goto,struct,union,enum,register,auto,static,const,extern,sizeof,volatile,case,default,_Bool,_Static_assert 
 				
-				- identifiers (isimler): değişkenler, fonksiyonlar,types,label,constant.
+				- identifiers (isimler): değişkenler, fonksiyonlar,types,label,constant,sınıf/struct/union,namespace,typedef,using,macro.
 					- sadece variable olması gerekmiyor.
 					- isimlendirmede olabilecek karakterler:
 						- A...Z 26
@@ -128,13 +128,16 @@ kalınan yer : 3.ders 34:00
 			- Thread'lerin kullanımı ile ilgili deadlock var mı yok mu onu kontrol eden programlar.
 			- çeşitler:
 				- Asan: adress senatizer.
-				- Usan: undefined behavior senatizer.
-				
-		- ikisi de tamamen programın çalışma zamanına yönelik analiz yapar. 
+				- Usan: undefined behavior senatizer.				
+		
 		- profiler: 
 			- amacı senatizer'dan çok farklı, performans analizi yapıyor.
 			- Hangi fonksiyon ne kadar çağırılmış ? Program hangi fonksiyonda ne kadar zaman kaybetmiş ? sorularına cevap veriyor.
-			- Biz bir c++ programı yazdık program sorunsuz çalışıyor fakat bir hız problemi var ve buna önlem almamız gerekiyor. Mesela bir algoritma kodu milyonlarca kez çağrılıyordur orda bir optimizasyon yapsam problemim çözülecek.Profiler burda devreye girer.
+			- Biz bir c++ programı yazdık program sorunsuz çalışıyor fakat bir hız problemi var ve buna önlem almamız gerekiyor. Mesela bir algoritma kodu milyonlarca kez 
+			çağrılıyordur orda bir optimizasyon yapsam problemim çözülecek.Profiler burda devreye girer.
+		
+		- ikisi de tamamen programın çalışma zamanına yönelik analiz yapar. 
+		
 	▪ compiler extension: 
 		- int x = 0b110'1100'1000'0011;//standart değil, her derleyici kabul etmeyebilir. compiler'a özgü bir özellik.
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
@@ -274,9 +277,11 @@ kalınan yer : 3.ders 34:00
 		
 	▪ Block kavramı { } - İç içe (nested) block mümkün.	
 	▪ sıralama:
-		1) isim arama
-		2) bağlam kontrolü
+		1) Tokenizing 
+		2) NameLookup
+		3) Bağlam kontrolü
 	 
+	▪ sizeof bir operator'dür. 
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ■ 4.Ders C [Basic Types]
