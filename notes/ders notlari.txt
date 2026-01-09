@@ -2,7 +2,8 @@
 	Dersler:
 	1) C genel tanıtım
 	2) C genel tanıtım tarihçesi, Derleme süreci, Preprocessor, Statik kod analizi araçları
-	3) Derleme süreci devam
+	3) Derleme süreci devam, value category
+	4)   
 	
 	■ undefined behavior: 
 		behavior upon use of a nonportable or erroneous program construct or of erroneous data, 
@@ -17,7 +18,7 @@
 
 	▪ gcc derleyicisini browserdan kullanmak için  www.wandbox.org	
 
-kalınan yer : 3.ders 34:00
+kalınan yer : 3.ders 2:36:50
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ■ 1.Ders C
@@ -68,7 +69,7 @@ kalınan yer : 3.ders 34:00
 	
 	▪ Linker neden var  ? :
 		- Özet olarak obje kodları alarak aralarında mantıksal bağlantıları kurarak bize çalıştırılabilir dosya oluşturan programdır.
-		- C/C++ seprate compile module denilen ayrı ayrı derleme sürecine tabii tutuluyor. 
+		- C/C++'da kaynak kodlar seperate compile module denilen ayrı ayrı derleme sürecine tabii tutuluyor. 
 		- Compiler dediğimiz program bizim projemizdeki kaynak dosyalar arasındaki mantıksal bağlantıdan haberdar değil.
 		- Derleyicinin işlem birimi dosya. Yani 4 kaynak dosyayı ayrı ayrı session'larla derleyiciyi 4 kez çalıştırarak derliyoruz. 
 		- Biz tek bir dosya olarak yazsak bile standart kütüphanenin dosyaları ayrı ayrı olduğundan onların ayrı ayrı derlenmesi gerekiyor.
@@ -90,7 +91,7 @@ kalınan yer : 3.ders 34:00
 				- keywords
 					- özel anlam yüklenmiş başka isim verilmesi yasaklanmış isimler:int,double,long,short,char,float,signed,unsigned,for,while,if,else,switch,goto,struct,union,enum,register,auto,static,const,extern,sizeof,volatile,case,default,_Bool,_Static_assert 
 				
-				- identifiers (isimler): değişkenler, fonksiyonlar,types,label,constant,sınıf/struct/union,namespace,typedef,using,macro.
+				- identifiers (isimler): değişkenler, fonksiyonlar,types,label,sınıf/struct/union,namespace,typedef,using,macro.
 					- sadece variable olması gerekmiyor.
 					- isimlendirmede olabilecek karakterler:
 						- A...Z 26
@@ -121,7 +122,7 @@ kalınan yer : 3.ders 34:00
 		- derleme zamanında kodlama hatalarını bulmaya çalışır.
 		- bazıları kod kalitesine yönelik destek de verir.
 	▪ Runtime analiz araçları 2 ayrı kategoride incelenir:		
-		- sanitizer: 
+		- senatizer: 
 			- Birçoğu unix/linux sistemlerde hazır olarak geliyor ya da ide'lere entegre edilmiş oluyor.
 			- Bellek sızıntılarını yakalamaya yönelik programlardır.
 			- Programa yapılan entegrasyon ile tanımsız davranışı runtime'de yakalamaya çalışan programlar.
@@ -143,8 +144,15 @@ kalınan yer : 3.ders 34:00
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ■ 3.Ders C [Sayı Sistemleri ve Genel Kavramlar]
+	▪ mülakat soruları:
+		1) 2 byte'lık alanda yazılabilecek en büyük işaretli tam sayıyı hex. ifade edin
+		2) 2 byte'lık alanda yazılabilecek en küçük işaretli tam sayıyı hex. ifade edin
+		3) 2 byte'lık alanda -1'i hex. ifade edin
 	
-	▪ Sayı (Number System) sistemleri, 2 ye tümleyen aritmetiği
+	▪ Sayı (Number System) sistemleri, 2 ye tümleyen aritmetiği : 
+		▪ sayının 1'e tümleyenini bulup bundan 1 çıkarırsak 2'ye tümleyenini buluruz.
+		▪ sağdan başlayarak 1 görene kadar aynı yazıp 1'den sonrasını ters çevirerek 2'ye tümleyenini buluruz.
+		▪ nibble : 4bit
 		▪ decimal - hex - octal - binary
 	
 	                                               Low Nibble
@@ -154,14 +162,14 @@ kalınan yer : 3.ders 34:00
 											   └ MSB Most significant Bit
 		
 		▪  1 word = 2 bytes
-		▪  1 double word = 2 words
+		▪  1 double word (dword) = 2 words = 4byte
 		
 		
 		▪ Unsigned olarak : Sayının direkt 2 lik tabandaki karşılığından bahsediyoruz. max value of a byte is decimal 255 , in binary that is 11111111 		
 			█ Örnek : işaretli tamsayı 36 nın bellekte saklandığı binary gösterimi bulunuz.						  
 				Direkt 2 lik tabandaki gösterimidir 			36 = 0010 0100	
 				
-		▪ Signed olarak   : Unsigned Sayının Two's Complement i ile elde edilir. Bunda actually, MSB, işaret biti [1 means negative, 0 positive] kabul edilir.
+		▪ Signed olarak   : Unsigned Sayının Two's Complement'i ile elde edilir. Bunda actually, MSB, işaret biti [1 means negative, 0 positive] kabul edilir.
 											 ────────────────
 												└ ▪ Why Two's Complement ?
 														For signed integers, representing them in Two's Complement has 
@@ -222,11 +230,16 @@ kalınan yer : 3.ders 34:00
 		▪ value category'si var [C++ da farklı tanımları var]
 			▪ L value : Eğer bir ifade Programın çalışma zamanında bellekte bir yere karşılık geliyorsa (nesneye karşılık gelen ifade) - Pratik test: &(ifade) ; //syntax hatası vermiyorsa L value
 			▪ R value : Nesneye değilde bir hesaplamaya karşılık gelen ifade
-	
+			▪ ++x => C'de R value C++'da ise L value
+			▪ +x => C ve C++'da R value fakat birçok programlama dilinde L value. 
 	▪ constant expression - öyle yerler var ki dilin kurallarına göre oralarda constant expression yazmak zorundayız
 		▪ Değeri compile zamanında belli olan/hesaplanabilen ifade (örn 10*20-50 gibi yerine 150 sabiti yazılabilen)  
 		▪ Mesela nerelerde constant expression lazım?
 			▪ Dizi boyutlarını bildirirken
+			▪ switch(x){
+				case y://y sabit ifadesi olması gerekiyor.
+					//
+					}
 			▪ ...
 			
 	▪ Statement
