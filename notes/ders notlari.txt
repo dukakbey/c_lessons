@@ -4,6 +4,8 @@
 	2) C genel tanıtım tarihçesi, Derleme süreci, Preprocessor, Statik kod analizi araçları
 	3) Derleme süreci devam, value category
 	4) C programlamaya giriş,   
+	5) Değişkenlerin bildirim ve tanımlanması
+	6) 
 	
 	■ undefined behavior: 
 		behavior upon use of a nonportable or erroneous program construct or of erroneous data, 
@@ -18,7 +20,7 @@
 
 	▪ gcc derleyicisini browserdan kullanmak için  www.wandbox.org	
 
-kalınan yer : 5.ders 00:00:00
+kalınan yer : 5.ders 01:14:00
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ■ 1.Ders C
