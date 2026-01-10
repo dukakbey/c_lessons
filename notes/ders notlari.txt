@@ -3,7 +3,7 @@
 	1) C genel tanıtım
 	2) C genel tanıtım tarihçesi, Derleme süreci, Preprocessor, Statik kod analizi araçları
 	3) Derleme süreci devam, value category
-	4)   
+	4) C programlamaya giriş,   
 	
 	■ undefined behavior: 
 		behavior upon use of a nonportable or erroneous program construct or of erroneous data, 
@@ -18,7 +18,7 @@
 
 	▪ gcc derleyicisini browserdan kullanmak için  www.wandbox.org	
 
-kalınan yer : 3.ders 2:36:50
+kalınan yer : 5.ders 00:00:00
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ■ 1.Ders C
@@ -122,7 +122,7 @@ kalınan yer : 3.ders 2:36:50
 		- derleme zamanında kodlama hatalarını bulmaya çalışır.
 		- bazıları kod kalitesine yönelik destek de verir.
 	▪ Runtime analiz araçları 2 ayrı kategoride incelenir:		
-		- senatizer: 
+		- sanitizer: 
 			- Birçoğu unix/linux sistemlerde hazır olarak geliyor ya da ide'lere entegre edilmiş oluyor.
 			- Bellek sızıntılarını yakalamaya yönelik programlardır.
 			- Programa yapılan entegrasyon ile tanımsız davranışı runtime'de yakalamaya çalışan programlar.
@@ -318,11 +318,11 @@ kalınan yer : 3.ders 2:36:50
 		├───────────────────────────┼────────────┼────────────────────────────────────────────────────────────────────────────────┤                
 		│ unsigned short int		│ Min 2 Byte │ = unsigned short             												  │                
 		├───────────────────────────┼────────────┼────────────────────────────────────────────────────────────────────────────────┤                
-		│ signed int 				│ Min 2 Byte │ = int                        												  │                
+		│ signed int 				│ Min 2 Byte │ = int  (bazı sistemlerde 4 byte)               								  │                
 		├───────────────────────────┼────────────┼────────────────────────────────────────────────────────────────────────────────┤                
 		│ unsigned int				│ Min 2 Byte │                            													  │                
 		├───────────────────────────┼────────────┼────────────────────────────────────────────────────────────────────────────────┤		           
-		│ signed long int			│ Min 4 Byte │                            													  │
+		│ signed long int			│ Min 4 Byte │   sistemlerin hepsinde aynı boyut              								  │
 		├───────────────────────────┼────────────┼────────────────────────────────────────────────────────────────────────────────┤		
 		│ unsigned long int			│ Min 4 Byte │                            													  │
 		├───────────────────────────┼────────────┼────────────────────────────────────────────────────────────────────────────────┤	
@@ -347,11 +347,18 @@ kalınan yer : 3.ders 2:36:50
 	═════════════════════════════════════
 		▪  global namespace'de Sadece Bildirim (declaration)
 		▪  local namespace'de  Hem bildirim hem deyim(statement) 
-			
+				
 	■ Declaration (Bildirim) 
 	════════════════════════
 		Bir ismin ne anlama geldiğini açıklayan yapılara. Dikkat ne ismi olduğu önemli değil(Typedef bildirimi, function bildirimi, değişken bildirimi ...)
-		Tokenizing sonrası token in bir isim(identifier) olduğunu anlıyor - evet bubir issim ancak bu hangi varlığın ismi? sorusuna yanıt aramak için namelookup yapmaya çıkıyor ve bir declaration arıyor.
+		Tokenizing sonrası token in bir isim(identifier) olduğunu anlıyor - evet bu bir issim ancak bu hangi varlığın ismi? sorusuna yanıt aramak için namelookup yapmaya çıkıyor ve bir declaration arıyor.
+	
+	■ Declaration(Bildirim) - Definition(Tanım) farkı
+	════════════════════════════════════════════════
+		Her Definition bir Declaration'dır fakat her Declaration bir Definition olmak zorunda değil.
+		fark:
+		- Declaration: derleyici bir ismin bir değişkeni bildirdiğini anlar ama o değişken için bellekte yer ayırmaz.
+		- Definition: derleyici bir ismin bir değişkeni için bellekte yer tahsis eder.
 	
 	▪ İşaretsiz Tamsayı sınır değerleri														▪ İşaretli Tamsayı sınır değerleri
 		┌──────┬───────────────────────────────────────────────────────────────────┐        	┌──────┬───────────────────────────────────────────────────────────────────┐
@@ -365,7 +372,8 @@ kalınan yer : 3.ders 2:36:50
 		├──────┼───────────────────────────────────────────────────────────────────┤        	├──────┼───────────────────────────────────────────────────────────────────┤
 		│ 8    │ 						   0 			18 446 744 073 709 551 615 │        	│ 8    │ - 9 223 372 036 854 775 808             9 223 372 036 854 775 807 │
 		└──────┴───────────────────────────────────────────────────────────────────┘        	└──────┴───────────────────────────────────────────────────────────────────┘
-		
+	
+	▪ a = f1()+ 5 * f2();//unspecified behavior - f1 veya f2'nin hangisinin önce çağrılacağı belli değil.
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ■ 5.Ders C [Değişkenlerin bildirim ve tanımlanması]			Initialization is not an assignment - C proverb   Early optimization is evil - Donald Knuth
@@ -770,16 +778,24 @@ kalınan yer : 3.ders 2:36:50
 						* asterisk
 						& ampersand
 						+ plus - hypen
-						. dot/period , comma  : colon ; semicolon
-						/ slash  \ backslash
-						< less than > greater than = equal sign
+						. dot/period 
+						, comma  
+						: colon 
+						; semicolon
+						/ slash  
+						\ backslash
+						< less than 
+						> greater than 
+						= equal sign
 						< > angular bracket
 						[ ] square bracket left / right
 						{ } curly brace - opening /closing
 						| pipe
 						~ tilda
-						^ caret / circumflex
-						_ underscore/underline								
+						^ caret 
+						/ circumflex
+						_ underscore
+						/underline								
 				═════════════════════════════════════════════════════════════════
 	
 			▪ Karakterlerle ilgili <ctype.h> başlık dosyasında, bize verilen test fonksiyonları var.
