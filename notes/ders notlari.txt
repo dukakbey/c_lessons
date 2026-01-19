@@ -20,7 +20,7 @@
 
 	▪ gcc derleyicisini browserdan kullanmak için  www.wandbox.org	
 
-kalınan yer : 7.ders 00:32:03
+kalınan yer : 7.ders 02:22:58
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ■ 1.Ders C
@@ -622,15 +622,15 @@ kalınan yer : 7.ders 00:32:03
 		▪ C dilinde function overloading YOK! 			[Belirli kurallarla birden fazla aynı isimli fonksiyon olmasına Function Overloading deniyor.]
 		▪ C dilinde default argument mekanizması YOK! 	[Fonksiyonun belirli parametrelerine arguman göndermediğinde, bunların öntanımlı değerler yollanmış gibi işletilmesine Default Argument mekanizması deniyor.]
 	
-	■ main hakkında notlar:
+	■ main hakkında notlar: 
 	════════════════════════
 		▪ Geri dönüş değeri tipik olarak sisteme bağlı. En sık kullanılan konvansiyon başarı bilgisi olması. 0 : SUCCESS ,  Non-Zero: FAILURE		
-		▪ int main(void) --> Parmetre parantezinin içine void yazmakla boş bırakmak aynı anlamda değil!
+		▪ int main(void) --> Parametre parantezinin içine void yazmakla boş bırakmak aynı anlamda değil!
 		▪ tipik bir main için --> int main(int argc, char **argv) Burada 	argc: argument count  , argv: argument vector
 	
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-■ 8.Ders C	[Constants ] Constants are also called literals.
+■ 8.Ders C	[Constants ] Constants are also called literals. 
 
 	Tokenize edildiğinde token ların kategorize edildiğinden bahsetmiştik. 
 	Bu kategorilerden bir tanesi de Constants.
