@@ -20,7 +20,7 @@
 
 	▪ gcc derleyicisini browserdan kullanmak için  www.wandbox.org	
 
-kalınan yer : 7.ders 02:22:58
+kalınan yer : 8.ders 00:25:00
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ■ 1.Ders C
@@ -44,7 +44,7 @@ kalınan yer : 7.ders 02:22:58
 		  
 	//kodun ne yaptığı açık değil
 	ex:
-		while(*p1++ = *p2++); //burda string kopyalama işlemi var.
+		while(*p1++ = *p2++); //burada string kopyalama işlemi var.
 		
 		while(n--); //burda string kopyalama işlemi var.
 			*p1++ = *p2++;
@@ -57,7 +57,7 @@ kalınan yer : 7.ders 02:22:58
 	▪ C dili:
 		- 1970-1972 yılları arası doğum tarihi
 		- 1978'de "the C programing language" kitabı yayınlandı.Reklamının yapıldığı ilk önemli gelişme.
-		- auto keyword C'de c++'dan farklı anlamda.
+		- auto keyword c'de c++'dan farklı anlamda.
 	
 	▪ Dosya dediğimiz şey aslında 1'ler 0'lar yani byte'lar kümesidir. Dosya'da tuttuğumuz 1'ler 0'lar ne anlama geliyor kısmı ise dosya formatına bağlıdır. Uzantıya göre belirlenir.
 	
@@ -147,8 +147,8 @@ kalınan yer : 7.ders 02:22:58
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────	
 ■ 3.Ders C [Sayı Sistemleri ve Genel Kavramlar]
 	▪ mülakat soruları:
-		1) 2 byte'lık alanda yazılabilecek en büyük işaretli tam sayıyı hex. ifade edin
-		2) 2 byte'lık alanda yazılabilecek en küçük işaretli tam sayıyı hex. ifade edin
+		1) 2 byte'lık alanda yazılabilecek en büyük işaretli tam sayıyı hex. ifade edin 
+		2) 2 byte'lık alanda yazılabilecek en küçük işaretli tam sayıyı hex. ifade edin 
 		3) 2 byte'lık alanda -1'i hex. ifade edin
 	
 	▪ Sayı (Number System) sistemleri, 2 ye tümleyen aritmetiği : 
